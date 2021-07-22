@@ -10,7 +10,7 @@ az login *) Definimos el subscription id que utilizaremos. Reemplzar por el valo
 
 az account set --subscription="927d0301-3031-467c-9b95-a3d0135304a7" *) Creación de un Service Principal que utilizaremos en Terraform
 
-az ad sp create-for-rbac --role="Contributor" Habiendo creado nuestro Service Principal crearemos el archivo /SAFE_VOLUME/terraform/credentials.tf, el que contendrá los siguientes campos
+az ad sp create-for-rbac --role="Contributor" Habiendo creado nuestro Service Principal crearemos el archivo credentials.tf, el que contendrá los siguientes campos
 
 provider "azurerm" { subscription_id = "Valor del id de subscripción que utilizaremos" client_id = "Valor de appId obtenido en el paso anterior" client_secret = "Valor de password obtenido en el paso anterior" tenant_id = "Valor de tenant obtenido en el paso anterior"
 
@@ -46,16 +46,4 @@ Ejecución
 
 terraforn ini en la ruta donde esta el directorio con los ficheros .tf y una vez lanzado luego se lanza el terraforn apply
 
-About
-No description, website, or topics provided.
-Topics
-Resources
- Readme
-License
- GPL-3.0 License
-Releases
-No releases published
-Create a new release
-Packages
-No packages published
-Publish your first package
+
