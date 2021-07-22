@@ -23,7 +23,7 @@ az account set --subscription="927d0301-3031-467c-9b95-a3d0135304a7"
 *) Creación de un Service Principal que utilizaremos en Terraform
 
 az ad sp create-for-rbac --role="Contributor"
-Habiendo creado nuestro Service Principal crearemos el archivo /SAFE_VOLUME/terraform/credentials.tf, el que contendrá los siguientes campos
+Habiendo creado nuestro Service Principal crearemos el archivo credentials.tf, el que contendrá los siguientes campos
 
 provider "azurerm" {
   subscription_id = "Valor del id de subscripci&oacute;n que utilizaremos"
