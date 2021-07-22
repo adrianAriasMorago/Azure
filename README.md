@@ -20,7 +20,7 @@ Estado local/remoto de Terraform Es posible guardar nuestro estado de Terraform 
 
 provider "azurerm" { features {} subscription_id = "XXXXXXX" client_id = "XXXXXXX" client_secret = "XXXXXXXX" tenant_id = "XXXXXXXX" }
 
-Ubicación geográfica de la solución Actualmente la solución está pensada para ejecutarse en "West Europe", si quisieras ejecutarla en otra ubicación sólo deberís cambiar el valor de "location" dentro de /SAFE_VOLUME/terraform/correccion-vars.tf
+Ubicación geográfica de la solución Actualmente la solución está pensada para ejecutarse en "West Europe", si quisieras ejecutarla en otra ubicación sólo deberís cambiar el valor de "location" dentro de correccion-vars.tf
 
 Nombre de la cuenta de almacenamiento Deberás ingresar un valor para storage_account dentro de correccion-vars.tf
 
