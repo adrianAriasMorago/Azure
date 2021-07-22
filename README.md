@@ -50,7 +50,7 @@ provider "azurerm" {
 }
 
 Ubicación geográfica de la solución
-Actualmente la solución está pensada para ejecutarse en "West Europe", si quisieras ejecutarla en otra ubicación sólo deberís cambiar el valor de "location" dentro de /SAFE_VOLUME/terraform/correccion-vars.tf
+Actualmente la solución está pensada para ejecutarse en "West Europe", si quisieras ejecutarla en otra ubicación sólo deberís cambiar el valor de "location" dentro de correccion-vars.tf
 
 Nombre de la cuenta de almacenamiento
 Deberás ingresar un valor para storage_account dentro de correccion-vars.tf
