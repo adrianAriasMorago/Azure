@@ -1,0 +1,11 @@
+---
+- hosts: k8s
+  become: yes
+  gather_facts: false
+  vars_files:
+  - variables.yml
+    tasks:
+      #
+    - name: Pulling images 
+      shell: firewall-cmd --permanent --add-service=nfs
+    
