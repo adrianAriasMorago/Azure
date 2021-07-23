@@ -1,0 +1,31 @@
+- hosts: workers
+  become: yes
+  gather_facts: false
+  vars_files:
+  - variables.yml
+    #instalamos NFS utils en los clientes
+  tasks:
+    - name: Ensure NFS utils is installed.
+      yum: 
+        name: nfs-utils
+        state: installed 
+
+    # Creamos un directorio para el cliente NFS
+    - name: Create mountable dir
+      file: 
+        path:  "{{ item }}"
+        state: directory 
+        mode: 644
+        owner: root 
+        group: root
+      with_items: "{{ nfs_directory_client }}"
+
+    # Montamos el FS en el cliente 
+    - name: Mount NFS volume
+      mount:
+        src: 10.0.10.22:/nfsdir
+        path: "{{ item }}"
+        opts: rw,sync
+        state: mounted
+        fstype: nfs
+      with_items: "{{ nfs_directory_client }}"
