@@ -1,0 +1,30 @@
+---
+## SERVER
+nfs_directory:
+- /nfsdir
+
+nfs_packages:
+- nfs-utils
+
+nfs_exports:
+- exports.j2
+
+nfs_ports:
+- "2049/tcp"
+- "2049/udp"
+- "111/tcp"
+- "111/udp"
+
+nfs_firewall:
+- rpc-bind
+- mountd
+
+nfs_services:
+- rpcbind.service
+- nfs-server.service
+- firewalld.service
+
+##CLIENT
+
+nfs_directory_client:
+- /nfsmount

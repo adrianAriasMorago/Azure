@@ -1,0 +1,51 @@
+---
+- hosts: nfs
+  become: yes
+  gather_facts: false
+  vars_files:
+  - variables.yml
+  tasks:
+    # Creamos un directorio para exportar el NFS
+    - name: Create mountable dir
+      file: 
+        path:  "{{ item }}"
+        state: directory 
+        mode: 644
+        owner: root 
+        group: root
+      with_items: "{{ nfs_directory }}"
+    # Instalamos los paquetes requeridos para el NFS server
+    - name: Ensure NFS utilities are installed.
+      yum: 
+        name: "{{ item }}"
+        state: installed 
+      with_items: "{{ nfs_packages }}"
+    # Copiamos el archivo de exports en en la configuracion del NFS
+    - name: copy /etc/exports
+      template: 
+        src: "{{ item }}"
+        dest: /etc/exports 
+        owner: root 
+        group: root
+      with_items: "{{ nfs_exports }}"
+    #Habilitamos los puertos indicados en el archivo env
+    - name: Allow Network Ports in Firewalld for nfs
+      firewalld:
+       port: "{{ item }}"
+       state: enabled
+       permanent: yes
+      with_items: "{{ nfs_ports  }}"
+    # Permitimos el trafico para los servicios de NFS     
+    - name: Permit traffic NFS services
+      firewalld:
+       service: "{{ item }}"
+       permanent: yes
+       state: enabled
+      with_items: "{{ nfs_firewall }}"
+    # Reiniciamos los servicios de NFS
+    - name: restart nfs server
+      service: 
+        name: "{{ item }}"
+        state: restarted
+        enabled: yes
+      with_items: "{{ nfs_services }}"

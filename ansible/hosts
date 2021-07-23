@@ -1,0 +1,23 @@
+[master]
+51.144.114.109
+
+[nfs]
+51.136.22.196
+
+[workers]
+104.46.60.220
+40.91.221.238
+
+[all:children]
+master
+workers
+nfs
+
+[k8s:children]
+master
+workers
+
+#Usuario SSH para el grupo nfs
+[all:vars]
+ansible_ssh_user=adminCP2
+
